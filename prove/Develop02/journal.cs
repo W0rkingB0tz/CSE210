@@ -5,7 +5,10 @@ class Journal
 
     public void Load(string fileName)
     {
-
+        foreach (var entryChange in entries)
+        {
+            entryChange.Display();
+        }
     }
 
     public void Save(string fileName)
@@ -13,8 +16,17 @@ class Journal
         
     }
 
-    public void AddEntry(Entry entry)
+    public void AddEntry(string prompt, string text)
     {
+        Entry entry = new Entry();
+
+        DateTime theCurrentTime = DateTime.Now;
+        string dateText = theCurrentTime.ToShortDateString();
+
+        entry._date = dateText;
+        entry._prompt = prompt;
+        entry._text = text;
+
         entries.Add(entry);
     }
 }
