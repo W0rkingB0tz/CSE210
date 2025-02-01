@@ -28,6 +28,8 @@ class Program
                 journal.Load(fileName);
             } else if (actionInput == "5"){
                 running = Cleanup(journal);
+            } else if (actionInput == "6"){
+                DeleteFile();
             } else{
                 Console.WriteLine("Invalid action!");
             }
@@ -72,5 +74,15 @@ class Program
         {
             return false;
         }
+    }
+
+    public static void DeleteFile()
+    {
+        Console.WriteLine("Enter existing file name to delete: ");
+        string fileName = Console.ReadLine();
+        string file = $"{fileName}.txt";
+
+        File.Delete(file);
+        Console.WriteLine($"{file} has been deleted");
     }
 }
