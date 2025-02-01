@@ -27,7 +27,7 @@ class Program
                 string fileName = Load();
                 journal.Load(fileName);
             } else if (actionInput == "5"){
-                running = Cleanup();
+                running = Cleanup(journal);
             } else{
                 Console.WriteLine("Invalid action!");
             }
@@ -47,20 +47,30 @@ class Program
     {
         Console.Write("File name to read from: ");
         string fileName = Console.ReadLine();
+        string file = $"{fileName}.txt";
 
-        return fileName;
+        return file;
     }
 
     public static string Save()
     {
         Console.Write("File name to write to: ");
         string fileName = Console.ReadLine();
+        string file = $"{fileName}.txt";
 
-        return fileName;
+        return file;
     }
 
-    public static bool Cleanup()
+    public static bool Cleanup(Journal jounral)
     {
-        return false;
+        if (jounral.changed == true)
+        {
+            Console.WriteLine("You have not saved the entries, please save first");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices.Marshalling;
 class Journal
 {
     List<Entry> entries = new List<Entry>();
-    bool changed;
+    public bool changed;
 
     public void Load(string fileName)
     {
@@ -33,6 +33,8 @@ class Journal
                 outputFile.WriteLine($"{entry._date}|{entry._prompt}|{entry._text}");
             }
         }
+
+        changed = false;
     }
 
     public void AddJournalEntry(string prompt, string text)
@@ -47,6 +49,8 @@ class Journal
         entry._text = text;
 
         entries.Add(entry);
+
+        changed = true;
     }
 
     public void Display()
